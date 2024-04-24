@@ -312,27 +312,7 @@ img, object{
 	</div>
 </div>
 
-<div class="page" id="nine">
-	<!--The following is page eight for question 8-->
-	<div id="header9" class="w3-container w3-flat-alizarin">
-		<h1>Question 9</h1>
-	<div id="content9" class="w3-container">
-      <!-- Content area where the main interactive stuff are placed -->
-      <h2>Push button to take picture.</h2>
-      <div>
-        Press orange button to create or choose image file:
-        <!-- Instructions for people to use -->
-        <input type="file" id="fileInput" STYLE="background-color: #FF6600;">
-      </div>
-      <div id="messageDisplayArea"></div>
-      <!--Area to display the message-->
 
-      <div id="canvas-container">
-      <!--Added container to hold both of the canvas-->
-          <canvas id="myCanvas" width=320 height=250 style=""></canvas><!--The first canvas where the original image will be shown-->
-      </div>
-	</div>
-</div>
 
 <div class="page" id="results">
 	<!--The following is a page to displaying results-->
@@ -350,6 +330,20 @@ img, object{
 		<p id="probability"></p>
 		<!--Button and location so the function can perform the action of restarting the test-->
 		<button onclick="restartTest();" class="w3-button w3-white w3-round w3-hover-red"><b>Restart Test</b></button>
+		<h2>Push button to take picture.</h2>
+      <div>
+        Press orange button to create or choose image file:
+        <!-- Instructions for people to use -->
+        <input type="file" id="fileInput" STYLE="background-color: #FF6600;">
+      </div>
+      <div id="messageDisplayArea"></div>
+      <!--Area to display the message-->
+
+      <div id="canvas-container">
+      <!--Added container to hold both of the canvas-->
+          <canvas id="myCanvas" width=320 height=250 style=""></canvas><!--The first canvas where the original image will be shown-->
+      </div>
+	</div>
 	</div>
 </div>
 </div>	
