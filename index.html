@@ -355,11 +355,16 @@ img, object{
       <div id="messageDisplayArea"></div>
       <!--Area to display the message-->
 
-      <div id="canvas-container">
-      <!--Added container to hold both of the canvas-->
-          <canvas id="myCanvas" width=320 height=250 style=""></canvas><!--The first canvas where the original image will be shown-->
-      </div>
-      <!--Closed <div section-->
+      <canvas id="myCanvas" width=600 height=500 style="border:1px solid #d3d3d3;"></canvas>
+
+		<script> /* This script initiates the cavas and puts the text on the canvas "myCanvas" */
+        		var canvas = document.getElementById('myCanvas');
+        		var context = canvas.getContext("2d");
+        		context.font = '20pt Calibri';
+        		context.fillStyle = "black";
+        		context.fillText("Original image will go here", 10, 20);
+      		</script>
+
 		</div>
 	</div>
 </div>
