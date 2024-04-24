@@ -1,5 +1,5 @@
 <!DOCTYPE html> 
-<html> 
+<html>
 <!-- The following code has been developed by students and/or researchers of the Freshman Research Initiative DIY Diagnostics Stream at The University of Texas at Austin.  This code is shared for demonstration purposes and should not be considered a product -- it is for entertainment purposes only.  Any user of this code does so at their own risk. Members of the DIY Stream, FRI, and The University of Texas system are not liable for anything related to this code.
  
 THIS CODE SHOULD NOT BE USED TO DIAGNOSE ANY KIND OF MEDICAL CONDITION.
@@ -7,95 +7,66 @@ THIS CODE SHOULD NOT BE USED TO DIAGNOSE ANY KIND OF MEDICAL CONDITION.
  
 Authors in chronological order of contribution:
 Tim Riedel
-Author 2
+Vy Vu
  
 Further Information:
-http://cns.utexas.edu/fri
- 
+http://diystream.cns.utexas.edu/
+
 Research Educator:
 Timothy Riedel
 triedel@utexas.edu
  
 Brief Description of Goal of Code:
-The code is designed to help diagnose whether a person is experiencing allergies or a cold based on their responses to questions. By answering these questions, the code calculates the probability of someone having allergies or a cold and presents the results accordingly.
-
+Creating an app with a series of questions to compute the probability a person may have heart diseases, so that they can take early action.
  
 Known Issues:
-There are potential issues, such as variable initialization clarity, percentage calculation accuracy, and the visibility of the disclaimer.
+Ignore this error message if you see it using the javaScript console: Error with Permissions-Policy header: Origin trial controlled feature not enabled: 'interest-cohort'.
 
+References:
 https://www.w3schools.com/w3css/default.asp
 https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-file
 -->
 	
-   <head> 
-      <title>Hello World</title>  
-	<!--Sets the title of the page-->
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta name="apple-mobile-web-app-capable" content="yes">
-      <link rel="stylesheet" href="w3.css">
-      <link rel="stylesheet" href="w3-colors-flat.css">
-	   <!--Imports CSS stylesheets-->
-   </head> 
-<!--This "</>" signifies the end of an element-->
+<head> 
+	<title>Hello World</title>  
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<link rel="stylesheet" href="w3.css">
+	<link rel="stylesheet" href="w3-colors-flat.css">
+</head> 
 
 <script>
-	var totalQuestions =6;
-	//I had to add this variable in order to ensure that both of the percentages added to a 100//
-        var allergy_count = 0;
-	//var is used to declare variables, values, and what you want the variable to do//
-	//In this case is used to declare the value of allergy starts at 0//
-        var cold_count = 0;
-	//var is used to declare variables, values, and what you want the variable to do//
-	//In this case is used to declare the value of cold starts at 0//
 
+	//variable used to put in function to count for the number of answers associated with heart diseases
+	var heartdiseases_count = 0;
+	
+	//function to count for the number of answers associated with heart diseases
+	function risk(){
+		heartdiseases_count = heartdiseases_count + 1;
+	}
 
-        function allergyAdd(){
-            allergy_count = allergy_count + 1;
-	//Increases the count for allergy//
-        }
+	/*Create function to compute the probability of user's risk of having heart disease
+ 	let riskProbability be variable*/
+	function diagnosis(){
+		var riskProbability = (heartdiseases_count/8)*100;
+		//The following code used to replace id probability on page results
+		document.getElementById("probability").innerHTML = "Risk of having heart disease is " + riskProbability + "%";
 
-        function coldAdd(){
-            cold_count = cold_count + 1;
-	//Increases the count for cold//
-        }
-
-	function getResult() {
-	//Dsiplays and calculates percentages//
-		var allergyPercent=(allergy_count/totalQuestions)*100;
-		//Divides allergy count by 6(number of question) and turns into percentage//
-		var coldPercent = (cold_count/totalQuestions)*100;
-		//Divides cold count by 6(number of question) and turns into percentage/
-		var totalPercent = allergyPercent + coldPercent;
-		//I noticed that if you go to a previous question and answer the percentage exceed the 100 percent value. So I looked up how to fix this//
-		//Check if combined total is not equal to 100//
-    		 if (totalPercent !== 100) {
-		//Functions to fix percentages if they do not equal 100//
-        		var scale = 100 / totalPercent;
-			 //Scales both vairables so they equal to 100//
-       			allergyPercent *= scale;
-			coldPercent *= scale;
-		}
-		var resultText = document.getElementById("resultText");
-		//Function to display the results. Grammar is very important here! It is also used in the results page//
-        resultText.innerHTML = "Probability it is allergies = " + allergyPercent.toFixed(2) + "%<br> Probability it is a cold = " + coldPercent.toFixed(2) + "%";
-		//Added the percentage signs//
-		//Tells the system how to display results. Two decimal points allowed//
 	}
 	function restartTest() {
 	//Function to restart the test
- 		allergy_count = 0;
-		cold_count = 0;
+ 		heartdiseases_count = 0;
     		//Reset the counts of the variables//
     		location.href = "#content0";
 		//Send the person back to the first page//
 	}
+	
+</script>	
 
-  </script>
 
-
-
+<!-- THIS STYLE CODE HELPS MAKE YOUR APP LOOK GOOD. PROBABLY DON'T MESS WITH IT -->
 <style>	
-
+/*No addtional changes are made for style */
 .body {
      margin: 0em;
 }
@@ -115,156 +86,169 @@ https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-
     left: 0vw;
     z-index: 1;
 }
+img, object{
+	max-height:75%;
+	max-width:75%;
+}
+	
 </style>
 
 <body>
-<div id="header" class="w3-container w3-flat-carrot">
-	<h1>Cold or Allergies</h1>
-<!--Header section-->
+<!--Create header for every page-->
+<div id="header0" class="w3-container w3-flat-alizarin">
+	<h1>Are you at risk for heart disease?</h1>
 </div>
-	
+
+<!--Introduction page-->
 <div id="content0" class="w3-container">
-<!--<div defines sections of the document. "id" gives a name to the page-->
-	<p>Are you feeling like you might have a cold but wonder if it is allergies. Answer a few short questions to find out!</p>
+	<p>Are you wondering whether you might be at risk for any type of heart diseases. Answer a few short questions to find out!</p>
 	
-	<a href="#one" class="w3-button w3-white w3-round w3-hover-green"><b>Get Started</b></a>
-	<!--<a redirects the individual to the desired page. "class"gives the definition to an object in the code for example: button. The "w3-" specifies the style of the object-->
+	<!--Button to be used to move to next page-->
+	<a href="#one" class="w3-button w3-white w3-round w3-hover-green"> Get Started </a>
 	
-	<p>The following code has been developed by students and/or researchers of the Freshman Research Initiative DIY Diagnostics Stream at The University of Texas at 		Austin.  This code is shared for demonstration purposes and should not be considered a product -- it is for entertainment purposes only. Any user of this code 			does so at their own risk. Members of the DIY Stream, FRI, and The University of Texas system are not liable for anything related to this code.</p>
- 	<!-- <p> starts a new paragraph-->
+	<p>The following code has been developed by students and/or researchers of the Freshman Research Initiative DIY Diagnostics Stream at The University of Texas at Austin.  This code is shared for demonstration purposes and should not be considered a product -- it is for entertainment purposes only. Any user of this code does so at their own risk. Members of the DIY Stream, FRI, and The University of Texas system are not liable for anything related to this code.</p>
+ 	
 	<p>THIS CODE SHOULD NOT BE USED TO DIAGNOSE ANY KIND OF MEDICAL CONDITION.</p>
 </div>
-<!--All pages below have the same outline as the one below except for the results page-->
-<!--Page one starts here. Question 1 is asked along with two buttons for an answer-->
-<div class="page" id="one">
-	<div id="page" class="w3-container w3-flat-carrot">
-		<h1>Question 1</h1>
-		<!--<h1> is a header tag-->
-	</div>
-	
-    	<div id="content1" class="w3-container">
-	<!--changed id name so the system is not confused-->
-        <p>Are your eyes watery or itchy?</p>
-		<!--Changed what the question said and made the question large-->
-		<!--Made the question size normal-->
-		<a href="#two" onclick="allergyAdd();" class="w3-button w3-round w3-padding-small w3-white w3-large w3-hover-green"><b>Yes</b></a>
-		<!--"onclcik" tells the system to do the desired action when clicking. For example: add one count to allergy. In this example, it also redirects the user to the next page-->
-		<!-- <b> Makes the words bold-->
-		<a href="#two" onclick="coldAdd();" class="w3-button w3-round w3-padding-small w3-white w3-large w3-hover-red"><b>No</b></a>
-		<!-- Change the code to switch pages and it should be in the same line-->
-		<!--Changed the "onclick" options to allergy or cold accordingly-->
-    	</div>
-</div>
 
-	<!--Page two starts here. Question 2 is asked along with two buttons for an answer-->
+<div class="page" id="one">
+	<!--The following is page one for question 1-->
+	<div id="header" class="w3-container w3-flat-alizarin">
+		<h1>Question 1</h1>
+	</div>
+
+	<div id="content1" class="w3-container">
+		<p>Are you overweight and/or having obesity?</p>
+		<!--Add buttons for answers with yes will add count to risk function-->
+		<a href="#two" onclick="risk();" class="w3-button w3-white w3-round w3-hover-green"> Yes</a>
+		<a href="#two" class="w3-button w3-white w3-round w3-hover-green"> No</a>
+	</div>
+</div>
 
 <div class="page" id="two">
-	<div class="w3-container w3-flat-carrot">
+	<!--The following is page two for question 2-->
+	<div id="header2" class="w3-container w3-flat-alizarin">
 		<h1>Question 2</h1>
 	</div>
-	
+
 	<div id="content2" class="w3-container">
-	<p>Do you have a fever?</p>
-		<!--Changed what the question said and made the question large-->
-		<!--Made the question size normal-->
-		<a href="#three" onclick="coldAdd();" class="w3-button w3-round w3-padding-small w3-white w3-large w3-hover-green"><b>Yes</b></a>
-		<a href="#three" onclick="allergyAdd();" class="w3-button w3-round w3-padding-small w3-white w3-large w3-hover-red"><b>No</b></a>
-		<!--Changed the "onclick" options to allergy or cold accordingly-->
+		<p>Are you having any type of diabetes?</p>
+		<!--Add buttons for answers with yes will add count to risk function-->
+		<a href="#three" onclick="risk();" class="w3-button w3-white w3-round w3-hover-green"> Yes</a>
+		<a href="#three" class="w3-button w3-white w3-round w3-hover-green"> No</a>
 	</div>
-</div>	
-	
-	<!--Page three starts here. Question 3 is asked along with two buttons for an answer-->
-	
+</div>
+
 <div class="page" id="three">
-	<div class="w3-container w3-flat-carrot">
+	<!--The following is page three for question 3-->
+	<div id="header3" class="w3-container w3-flat-alizarin">
 		<h1>Question 3</h1>
 	</div>
-	
-	<div id="content3" class="w3-container">
-	<p>Do you have a sore throat?</p>
-		<!--Changed what the question said and made the question large-->
-		<!--Made the question size normal-->
-		<a href="#four" onclick="coldAdd();" class="w3-button w3-round w3-padding-small w3-white w3-large w3-hover-green"><b>Yes</b></a>
-		<a href="#four" onclick="allergyAdd();" class="w3-button w3-round w3-padding-small w3-white w3-large w3-hover-red"><b>No</b></a>
-		<!--Changed the "onclick" options to allergy or cold accordingly-->
-	</div>
-</div>	
 
-	<!--Page four starts here. Question 4 is asked along with two buttons for an answer-->
+	<div id="content3" class="w3-container">
+		<p>Do you have an unhealthy diet that is high in salt, cholesterol, saturated fats, and trans fats?</p>
+		<!--Add buttons for answers with yes will add count to risk function-->
+		<a href="#four" onclick="risk();" class="w3-button w3-white w3-round w3-hover-green"> Yes</a>
+		<a href="#four" class="w3-button w3-white w3-round w3-hover-green"> No</a>
+	</div>
+</div>
 
 <div class="page" id="four">
-	<div class="w3-container w3-flat-carrot">
+	<!--The following is page four for question 4-->
+	<div id="header4" class="w3-container w3-flat-alizarin">
 		<h1>Question 4</h1>
 	</div>
-	
+
 	<div id="content4" class="w3-container">
-	<p>Are your symptoms seasonal or chronic?</p>
-		<!--Changed what the question said and made the question large-->
-		<!--Made the question size normal-->
-		<a href="#five" onclick="allergyAdd();" class="w3-button w3-round w3-padding-small w3-white w3-large w3-hover-green"><b>Yes</b></a>
-		<a href="#five" onclick="coldAdd();" class="w3-button w3-round w3-padding-small w3-white w3-large w3-hover-red"><b>No</b></a>
-		<!--Changed the "onclick" options to allergy or cold accordingly-->
+		<p>Do you exercise regularly?</p>
+		<!--Add buttons for answers with no will add count to risk function-->
+		<a href="#five" class="w3-button w3-white w3-round w3-hover-green"> Yes</a>
+		<a href="#five" onclick="risk();" class="w3-button w3-white w3-round w3-hover-green"> No</a>
 	</div>
 </div>
-
-	<!--Page five starts here. Question 5 is asked along with two buttons for an answer-->
 
 <div class="page" id="five">
-	<div class="w3-container w3-flat-carrot">
+	<!--The following is page five for question 5-->
+	<div id="header5" class="w3-container w3-flat-alizarin">
 		<h1>Question 5</h1>
 	</div>
-	
+
 	<div id="content5" class="w3-container">
-	<p>Do you have a tickly throat?</p>
-		<!--Changed what the question said and made the question large-->
-		<!--Made the question size normal-->
-		<a href="#six" onclick="coldAdd();" class="w3-button w3-round w3-padding-small w3-white w3-large w3-hover-green"><b>Yes</b></a>
-		<a href="#six" onclick="allergyAdd();" class="w3-button w3-round w3-padding-small w3-white w3-large w3-hover-red"><b>No</b></a>
-		<!--Changed the "onclick" options to allergy or cold accordingly-->
+		<p>Do you consume alcohol excessively?</p>
+		<!--Add buttons for answers with yes will add count to risk function-->
+		<a href="#six" onclick="risk();" class="w3-button w3-white w3-round w3-hover-green"> Yes</a>
+		<a href="#six" class="w3-button w3-white w3-round w3-hover-green"> No</a>
 	</div>
 </div>
-
-	<!--Page six starts here. Question 6 is asked along with two buttons for an answer-->
 
 <div class="page" id="six">
-	<div class="w3-container w3-flat-carrot">
+	<!--The following is page six for question 6-->
+	<div id="header6" class="w3-container w3-flat-alizarin">
 		<h1>Question 6</h1>
 	</div>
-	
+
 	<div id="content6" class="w3-container">
-	<p>Do you have diarrhea?</p>
-		<!--Changed what the question said and made the question large-->
-		<!--Made the question size normal-->
-		<a href="#results" onclick="allergyAdd();" class="w3-button w3-round w3-padding-small w3-white w3-large w3-hover-green"><b>Yes</b></a>
-		<a href="#results" onclick="coldAdd();" class="w3-button w3-round w3-padding-small w3-white w3-large w3-hover-red"><b>No</b></a>
-		<!--Changed the "onclick" options to allergy or cold accordingly-->
+		<p>Are you smoking?</p>
+		<!--Add buttons for answers with yes will add count to risk function-->
+		<a href="#seven" onclick="risk();" class="w3-button w3-white w3-round w3-hover-green"> Yes</a>
+		<a href="#seven" class="w3-button w3-white w3-round w3-hover-green"> No</a>
 	</div>
 </div>
 
-	<!--Page seven (results page) starts here. Two buttons are displayed, one for getting the results and one for coming back to the first page-->
+<div class="page" id="seven">
+	<!--The following is page seven for question 7-->
+	<div id="header7" class="w3-container w3-flat-alizarin">
+		<h1>Question 7</h1>
+	</div>
+
+	<div id="content7" class="w3-container">
+		<p>Do you have high blood pressure?</p>
+		<!--Add buttons for answers with yes will add count to risk function-->
+		<a href="#eight" onclick="risk();" class="w3-button w3-white w3-round w3-hover-green"> Yes</a>
+		<a href="#eight" class="w3-button w3-white w3-round w3-hover-green"> No</a>
+	</div>
+</div>
+
+<div class="page" id="eight">
+	<!--The following is page eight for question 8-->
+	<div id="header8" class="w3-container w3-flat-alizarin">
+		<h1>Question 8</h1>
+	</div>
+
+	<div id="content8" class="w3-container">
+		<p>Do you have high blood cholesterol?</p>
+		<!--Add buttons for answers with yes will add count to risk function-->
+		<a href="#results" onclick="risk();" class="w3-button w3-white w3-round w3-hover-green"> Yes</a>
+		<a href="#results" class="w3-button w3-white w3-round w3-hover-green"> No</a>
+	</div>
+</div>
 
 <div class="page" id="results">
-	<div class="w3-container w3-flat-carrot">
+	<!--The following is a page to displaying results-->
+	<div id="header9" class="w3-container w3-flat-alizarin">
 		<h1>Results</h1>
-	</div>	
-		<!--There was a mistake in the ID name so i changed both of the below ones-->
-		<div id="content" class="w3 container">
-			<p>Click the button below to discover your fate!</p>
-		</div>
-	<div id="resultContainer" class="w3-container">
-		<button onclick="getResult();" class="w3-button w3-white w3-round w3-hover-green"><b>Results</b></button>
-		<!--Button to get the result using the variables stated above-->
-		<p id="resultText"></p>
-		<button onclick="restartTest();" class="w3-button w3-white w3-round w3-hover-red"><b>Restart Test</b></button>
-		<!--Button and location so the function can perform the action--> 	
-		
 	</div>
-</div>
 	
-<footer class="w3-bottom w3-container w3-flat-carrot">
-	<!--Footer tag-->
-	<p>DIY!</p>
-</footer>
+	<div id="content9" class="w3-container">
+		<p>The higher the percentage, the greater the risk you are of having heart disease.</p>
+		<p>However, please consult the doctor for proper diagnosis.</p>
+		<p> Please monitor your health closely and check-up once a year for your own wellness.</p>
+		<!--Results will be displayed after hitting the button-->
+		<a onclick="diagnosis();" class="w3-button w3-white w3-round w3-hover-green"> See Results</a>
+		<!--Code is used to display the probability of having heart disease-->
+		<p id="probability"></p>
+		<!--Add image on this page with the following code--><p id="resultText"></p>
+		<button onclick="restartTest();" class="w3-button w3-white w3-round w3-hover-red"><b>Restart Test</b></button>
+		<!--Button and location so the function can perform the action-->
 
+		<img src="https://www.heart.org/-/media/Images/Around-the-AHA/2022-Top-10_SC.jpg" alt="Heart Disease Illustration">
+	</div>
+</div>	
+		
+<!--Creat footer for every page-->
+<footer class="w3-bottom w3-container w3-flat-alizarin">
+	<h1>DIY!</h1>
+</footer>
+	
 </body>
 </html>
