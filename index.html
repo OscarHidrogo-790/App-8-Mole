@@ -1,25 +1,25 @@
-<!DOCTYPE html> 
-<html> 
+<!DOCTYPE html>
+<html>
 <!-- The following code has been developed by students and/or researchers of the Freshman Research Initiative DIY Diagnostics Stream at The University of Texas at Austin.  This code is shared for demonstration purposes and should not be considered a product -- it is for entertainment purposes only.  Any user of this code does so at their own risk. Members of the DIY Stream, FRI, and The University of Texas system are not liable for anything related to this code.
- 
+
 THIS CODE SHOULD NOT BE USED TO DIAGNOSE ANY KIND OF MEDICAL CONDITION.
- 
- 
+
+
 Authors in chronological order of contribution:
 Tim Riedel
 Vy Vu
 Oscar Hidrogo
- 
+
 Further Information:
 http://diystream.cns.utexas.edu/
 
 Research Educator:
 Timothy Riedel
 triedel@utexas.edu
- 
+
 Brief Description of Goal of Code:
 To provide a diagnostic tool in which users can identify whether they have melanoma or a regular mole.
- 
+
 Known Issues:
 Ignore this error message if you see it using the javaScript console: Error with Permissions-Policy header: Origin trial controlled feature not enabled: 'interest-cohort'.
 
@@ -27,20 +27,20 @@ References:
 https://www.w3schools.com/w3css/default.asp
 https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-file
 -->
-	
-<head> 
-	<title>Hello World</title>  
+
+<head>
+	<title>Hello World</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<link rel="stylesheet" href="w3.css">
 	<link rel="stylesheet" href="w3-colors-flat.css">
-</head> 
+</head>
 
 <script>
 
 	//variable used to put in function to count for the number of answers associated with melanoma
 	var melanoma_count = 0;
-	
+
 	//function to count for the number of answers associated with melanoma
 	function risk(){
 		melanoma_count = melanoma_count + 1;
@@ -54,6 +54,20 @@ https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-
 		document.getElementById("probability").innerHTML = "Risk of having melanoma is " + riskProbability + "%";
 
 	}
+
+	var canvas = document.getElementById('myCanvas');
+        //Retrieves the first canvas for Javascript to use
+        var context = canvas.getContext("2d");
+        //Sets the 2D context
+        context.font = '20pt Times New Roman';
+        //Sets font of the letters inside the canvas
+        canvas.style.border = "4px solid";
+        //Adds border to the canvas
+        context.fillStyle = "black";
+        //Sets the collor for filling shapes and letters
+        context.fillText("Original image will go here", 10, 50);
+        //Sets the location of the text and what will be displayed
+
 
 	//function to restart the test
 	function restartTest() {
@@ -147,11 +161,11 @@ https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-
 			 })
  }
                      //Calls the function drawImageIOSFix to draw the image onto the first canvas.
-</script>	
+</script>
 
 
 <!-- THIS STYLE CODE HELPS MAKE YOUR APP LOOK GOOD. PROBABLY DONT MESS WITH IT -->
-<style>	
+<style>
 .body {
      margin: 0em;
 }
@@ -175,7 +189,7 @@ https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-
 img, object{
 	max-height:75%;
 	max-width:75%;
-}	
+}
 </style>
 
 <body>
@@ -187,12 +201,12 @@ img, object{
 <!--Introduction page-->
 <div id="content0" class="w3-container">
 	<p>Are you wondering whether you have melanoma or a regular mole? Answer a few short questions to find out!</p>
-	
+
 	<!--Button to be used to move to next page-->
 	<a href="#one" class="w3-button w3-white w3-round w3-hover-green"> Get Started </a>
-	
+
 	<p>The following code has been developed by students and/or researchers of the Freshman Research Initiative DIY Diagnostics Stream at The University of Texas at Austin.  This code is shared for demonstration purposes and should not be considered a product -- it is for entertainment purposes only. Any user of this code does so at their own risk. Members of the DIY Stream, FRI, and The University of Texas system are not liable for anything related to this code.</p>
- 	
+
 	<p>THIS CODE SHOULD NOT BE USED TO DIAGNOSE ANY KIND OF MEDICAL CONDITION.</p>
 </div>
 
@@ -316,11 +330,11 @@ img, object{
 
 <div class="page" id="results">
 	<!--The following is a page to displaying results-->
-	<div id="header10" class="w3-container w3-flat-alizarin">
+	<div id="header9" class="w3-container w3-flat-alizarin">
 		<h1>Results</h1>
 	</div>
-	
-	<div id="content10" class="w3-container">
+
+	<div id="content9" class="w3-container">
 		<!--Words to users-->
 		<p>The higher the percentage, the greater your risk of melanoma.</p>
 		<p>However, please consult the doctor for proper diagnosis.</p>
@@ -330,7 +344,9 @@ img, object{
 		<p id="probability"></p>
 		<!--Button and location so the function can perform the action of restarting the test-->
 		<button onclick="restartTest();" class="w3-button w3-white w3-round w3-hover-red"><b>Restart Test</b></button>
-		<h2>Push button to take picture.</h2>
+		<div data-role="content">
+      <!-- Content area where the main interactive stuff are placed -->
+      <h2>Push button to take picture.</h2>
       <div>
         Press orange button to create or choose image file:
         <!-- Instructions for people to use -->
@@ -343,15 +359,16 @@ img, object{
       <!--Added container to hold both of the canvas-->
           <canvas id="myCanvas" width=320 height=250 style=""></canvas><!--The first canvas where the original image will be shown-->
       </div>
-	</div>
+      <!--Closed <div section-->
+		</div>
 	</div>
 </div>
-</div>	
-		
+
+
 <!--Creat footer for every page-->
 <footer class="w3-bottom w3-container w3-flat-alizarin">
 	<h1>DIY!</h1>
 </footer>
-	
+
 </body>
 </html>
