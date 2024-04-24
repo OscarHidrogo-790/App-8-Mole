@@ -116,45 +116,37 @@ https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-
 /* window.onload necessary to keep javascripts from running before the app gets a chance to load entirely. */
  window.onload = function() {
 
-     var fileInput = document.getElementById('fileInput');
-     //Grabs a reference to the file input element by its ID
-     var messageDisplayArea = document.getElementById('messageDisplayArea');
-     /* fileInput.addEventListener looks for any change in the <input> tag indicating that the user has selected a file (picture). */
-     fileInput.addEventListener('change',
-         function (e) {
-         var file = fileInput.files[0];
-         var imageType = /image.*/;
-         /* if (file.type.match(imageType)) checks that the selected file is indeed an image. */
-         if (!file.type.match(imageType)) {
-             // this is what happens if the orignial file selected is not an image file
-             messageDisplayArea.innerHTML = "File not supported!"
-         } // end of the if statement checking that file is an image
-         else {
-             /* new FileReader(); and reader.onload start some kind of file reading process in javaScript. I do not understand why this is necessary, although it may simply slow things down to let the image load. */
-             var reader = new FileReader();
-             reader.onload = function (e) {
-                 /* messageDisplayArea.innerHTML not needed but allows you to send a message at this point in the program. */
-                 messageDisplayArea.innerHTML = "You picked an image!";
-                 /* new Image() and img.onload start some kind of new image creation process in javaScript. I do not understand why this is necessary, although it may simply slow things down to let the image load. */
-                 var img = new Image();
-                 img.onload = function () {
-                     /*This finally draws the image onto the first drawing canvas. The specific canvas is referred to by "context". This is established down in the HTML part of the file just under the first <canvas> tag. If we weren't worried about fixing an iPhone bug we would use context.drawImage(image, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, 600, 500) instead of drawImageIOSFix */
+	 var fileInput = document.getElementById('fileInput');
+	 //Grabs a reference to the file input element by its ID
+	 var messageDisplayArea = document.getElementById('messageDisplayArea');
+	 /* fileInput.addEventListener looks for any change in the <input> tag indicating that the user has selected a file (picture). */
+	 fileInput.addEventListener('change',
+			 function (e) {
+				 var file = fileInput.files[0];
+				 var imageType = /image.*/;
+				 /* if (file.type.match(imageType)) checks that the selected file is indeed an image. */
+				 if (!file.type.match(imageType)) {
+					 // this is what happens if the orignial file selected is not an image file
+					 messageDisplayArea.innerHTML = "File not supported!"
+				 } // end of the if statement checking that file is an image
+				 else {
+					 /* new FileReader(); and reader.onload start some kind of file reading process in javaScript. I do not understand why this is necessary, although it may simply slow things down to let the image load. */
+					 var reader = new FileReader();
+					 reader.onload = function (e) {
+						 /* messageDisplayArea.innerHTML not needed but allows you to send a message at this point in the program. */
+						 messageDisplayArea.innerHTML = "You picked an image!";
+						 /* new Image() and img.onload start some kind of new image creation process in javaScript. I do not understand why this is necessary, although it may simply slow things down to let the image load. */
+						 var img = new Image();
+						 img.onload = function () {
+							 /*This finally draws the image onto the first drawing canvas. The specific canvas is referred to by "context". This is established down in the HTML part of the file just under the first <canvas> tag. If we weren't worried about fixing an iPhone bug we would use context.drawImage(image, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, 600, 500) instead of drawImageIOSFix */
 
-                     drawImageIOSFix(context, img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, 320, 250)};
+							 drawImageIOSFix(context, img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, 320, 250);
+						 }
+					 }
+				 }
+			 })
+ }
                      //Calls the function drawImageIOSFix to draw the image onto the first canvas.
-var canvas = document.getElementById('myCanvas');
-        //Retrieves the first canvas for Javascript to use
-        var context = canvas.getContext("2d");
-        //Sets the 2D context
-        context.font = '20pt Times New Roman';
-        //Sets font of the letters inside the canvas
-        canvas.style.border = "4px solid";
-        //Adds border to the canvas
-        context.fillStyle = "black";
-        //Sets the collor for filling shapes and letters
-        context.fillText("Original image will go here", 10, 50);
-        //Sets the location of the text and what will be displayed
-	
 </script>	
 
 
@@ -320,10 +312,11 @@ img, object{
 	</div>
 </div>
 
-<div data-role="page">
-    <div data-role="header">
-    <h1>Primary Colors</h1></div><!-- /header -->
-    <div data-role="content">
+<div class="page" id="nine">
+	<!--The following is page eight for question 8-->
+	<div id="header9" class="w3-container w3-flat-alizarin">
+		<h1>Question 9</h1>
+	<div id="content9" class="w3-container">
       <!-- Content area where the main interactive stuff are placed -->
       <h2>Push button to take picture.</h2>
       <div>
@@ -337,17 +330,17 @@ img, object{
       <div id="canvas-container">
       <!--Added container to hold both of the canvas-->
           <canvas id="myCanvas" width=320 height=250 style=""></canvas><!--The first canvas where the original image will be shown-->
-          <canvas id="myCanvas2" width="320" height="250" style=""></canvas><!--Second canvas where the transformed canvas will be shown-->
       </div>
 	</div>
 </div>
+
 <div class="page" id="results">
 	<!--The following is a page to displaying results-->
-	<div id="header9" class="w3-container w3-flat-alizarin">
+	<div id="header10" class="w3-container w3-flat-alizarin">
 		<h1>Results</h1>
 	</div>
 	
-	<div id="content9" class="w3-container">
+	<div id="content10" class="w3-container">
 		<!--Words to users-->
 		<p>The higher the percentage, the greater your risk of melanoma.</p>
 		<p>However, please consult the doctor for proper diagnosis.</p>
@@ -358,6 +351,7 @@ img, object{
 		<!--Button and location so the function can perform the action of restarting the test-->
 		<button onclick="restartTest();" class="w3-button w3-white w3-round w3-hover-red"><b>Restart Test</b></button>
 	</div>
+</div>
 </div>	
 		
 <!--Creat footer for every page-->
